@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom: 10px;">Здравствуйте, {{ current_user.full_name }}!</h2>
+    <p style="color: #555;">Вы успешно вошли в систему.</p>
+    
+    {% if current_user.username == "admin" %}
+        <div class="admin_box">
+            <h3>🔹 Вы администратор</h3>
+            <p>У вас есть полный доступ к управлению сайтом.</p>
+        </div>
+    {% else %}
+        <div class="user_box">
+            <h3>🔹 Вы обычный пользователь</h3>
+            <p>У вас стандартные права.</p>
+        </div>
+    {% endif %}
+    
+    <form action="{{ url_for('logout') }}" method="GET">
+        <button type="submit" class="button button_exit">Выйти из профиля</button>
+    </form>
+</div>
+{% endblock %}
