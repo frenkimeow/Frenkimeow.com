@@ -55,7 +55,6 @@ def login():
         user_data = users.get(username)
 
         if user_data and check_password_hash(user_data['password'], password):
-            # Передаём полное имя в объект пользователя
             user = User(user_data['id'], user_data['username'], user_data['full_name'])
             login_user(user, remember=remember)
             return redirect(url_for('home'))
